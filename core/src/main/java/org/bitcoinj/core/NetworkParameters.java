@@ -68,6 +68,13 @@ public abstract class NetworkParameters {
 	/** The string returned by getId() for the WhiteCoin netparams. */
     public static final String ID_WHITECOIN_NET = "org.bitcoinj.whitecoin_net";
 
+    /** The string returned by getId() for the FantasyGold mainnet. */
+    public static final String ID_FANTASYGOLD_MAINNET = "org.bitcoinj.fantasygold_mainnet";
+
+    /** The string returned by getId() for the FantasyGold testnet. */
+    public static final String ID_FANTASYGOLD_TESTNET = "org.bitcoinj.fantasygold_testnet";
+    public static final String ID_FANTASYGOLD_REGTEST = "org.bitcoinj.fantasygold_regtest";
+
     /** The string used by the payment protocol to represent the main net. */
     public static final String PAYMENT_PROTOCOL_ID_MAINNET = "main";
     /** The string used by the payment protocol to represent the test net. */
@@ -152,12 +159,12 @@ public abstract class NetworkParameters {
      * network rules in a soft-forking manner, that is, blocks that don't follow the rules are accepted but not
      * mined upon and thus will be quickly re-orged out as long as the majority are enforcing the rule.
      */
-    public static final int BIP16_ENFORCE_TIME = 1333238400;
+    public static final int BIP16_ENFORCE_TIME = 1333238400; //TODO
     
     /**
      * The maximum number of coins to be generated
      */
-    public static final long MAX_COINS = 21000000;
+    public static final long MAX_COINS = 210000000L;
 
     /**
      * The maximum money to be generated
@@ -237,8 +244,14 @@ public abstract class NetworkParameters {
         } else if (id.equals(ID_QTUM_TESTNET)) {
             return QtumTestNetParams.get();
         } else if(id.equals(ID_WHITECOIN_NET)){
-			return WhiteCoinNetParams.get();
-		}else{
+	    return WhiteCoinNetParams.get();
+        } else if (id.equals(ID_FANTASYGOLD_MAINNET)) {
+            return FantasyGoldMainNetParams.get();
+        } else if (id.equals(ID_FANTASYGOLD_TESTNET)) {
+            return FantasyGoldTestNetParams.get();
+		} else if (id.equals(ID_FANTASYGOLD_REGTEST)) {
+            return FantasyGoldRegTestParams.get();
+        } else{
             return null;
         }
     }
